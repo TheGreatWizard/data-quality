@@ -1,0 +1,578 @@
+{
+  "type": "CityJSON_Extension",
+  "name": "Quality",
+  "uri": "https://someurl.org/quality.json",
+  "version": "0.1",
+  "description": "Application Domain Extension to data quality modeling",
+  "definitions": {
+    "distance-value": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0
+            },
+            "uom": {
+              "enum": [
+                "m",
+                "feet"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": ["value", "uom"]
+        },
+        {
+          "type": "number",
+          "minimum": 0
+        }
+      ]
+    },
+    "resolution-value": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "uom": {
+              "enum": [
+                "m",
+                "feet"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": ["value", "uom"]
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      ]
+    },
+    "angle-value": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "uom": {
+              "enum": [
+                "dd"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": ["value", "uom"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 6.283185308
+            },
+            "uom": {
+              "enum": [
+                "rad"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": ["value", "uom"]
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 6.283185308
+        }
+      ]
+    },
+    "half-angle-value": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 180
+            },
+            "uom": {
+              "enum": [
+                "dd"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": ["value", "uom"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 3.1415926536
+            },
+            "uom": {
+              "enum": [
+                "rad"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": ["value", "uom"]
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3.1415926536
+        }
+      ]
+    },
+    "uom-pq-variance-matrix": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "#ref": "definitions/#uom-pq-variance-matrix"
+            },
+            "uom": {
+              "enum": [
+                "m2",
+                "feet2"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": ["value", "uom"]
+        },
+        {
+          "#ref": "definitions/#pq-variance-matrix"
+        }
+      ]
+    },
+    "pq-variance-matrix": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "type": "number"
+      }
+    },
+    "pq-simple2d": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "targetVertex": {
+          "type": "number"
+        },
+        "targetSurface": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "CE90": {
+          "$ref": "definitions#/distance-value"
+        },
+        "LE90": {
+          "$ref": "definitions#/distance-value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pq-simple3d": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "targetVertex": {
+          "type": "number"
+        },
+        "targetSurface": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "SE90": {
+          "$ref": "definitions#/distance-value"
+        },
+        "LE90": {
+          "$ref": "definitions#/distance-value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pq-simple2d-arr": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "definitions#/pq-simple2d"
+          }
+        },
+        {
+          "$ref": "definitions#/pq-simple2d"
+        }
+      ]
+    },
+    "pq-simple3d-arr": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "definitions#/pq-simple3d"
+          }
+        },
+        {
+          "$ref": "definitions#/pq-simple3d"
+        }
+      ]
+    },
+    "pq-surface": {
+      "type": "object",
+      "properties": {
+        "targetSurface": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "position": {
+          "$ref": "definitions#/pq-variance-matrix"
+        },
+        "azimuth": {
+          "$ref": "definitions#/half-angle-value"
+        },
+        "elevation": {
+          "$ref": "definitions#/half-angle-value"
+        },
+        "texture_CE90": {
+          "$ref": "definitions#/distance-value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pq-vertices": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "targetVertex": {
+          "type": "number"
+        },
+        "targetSurface": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "positionAccuracy": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "definitions#/pq-variance-matrix"
+              }
+            },
+            {
+              "$ref": "definitions#/pq-variance-matrix"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "tr": {
+      "type": "object",
+      "properties": {
+        "measureDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "measureTime": {
+          "type": "string",
+          "format": "time"
+        },
+        "transience": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "vq-set1": {
+      "type": "object",
+      "properties": {
+        "textureType": {
+          "enum": [
+            "None",
+            "TypeColor",
+            "Typical",
+            "Realistic"
+          ]
+        },
+        "resolution": {
+          "$ref": "definitions#/resolution-value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "vq-set2": {
+      "type": "object",
+      "properties": {
+        "targetSurface": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "propriety": {
+          "enum": [
+            "Bad",
+            "Poor",
+            "Average",
+            "Good"
+          ]
+        },
+        "isOccluded": {
+          "type": "boolean"
+        },
+        "distanceToCamera": {
+          "$ref": "definitions#/distance-value"
+        },
+        "verticality": {
+          "$ref": "definitions#/angle-value"
+        },
+        "resolution": {
+          "$ref": "definitions#/resolution-value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sq-reliability": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "reliability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "sq-reliability-arr": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "definitions#/sq-reliability"
+          }
+        },
+        {
+          "$ref": "definitions#/sq-reliability"
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      ]
+    }
+  },
+  "extraRootProperties": {},
+  "extraAttributes": {
+    "Building": {
+      "+quality-reliability": {
+        "$ref": "definitions#/sq-reliability-arr"
+      },
+      "+quality-positionalQuality": {
+        "type": "object",
+        "properties": {
+          "set1": {
+            "$ref": "definitions#/pq-simple2d-arr"
+          },
+          "set2": {
+            "$ref": "definitions#/pq-simple3d-arr"
+          },
+          "set3": {
+            "$ref": "definitions#/pq-surface"
+          },
+          "set4": {
+            "$ref": "definitions#/pq-vertices"
+          }
+        },
+        "additionalProperties": false
+      },
+      "+quality-visualQuality": {
+        "type": "object",
+        "properties": {
+          "set1": {
+            "$ref": "definitions#/vq-set1"
+          },
+          "set2": {
+            "$ref": "definitions#/vq-set2"
+          }
+        },
+        "additionalProperties": false
+      },
+      "+quality-temporalReliability": {
+        "$ref": "definitions#/tr"
+      },
+      "+quality-completeness": {
+        "type": "number"
+      }
+    }
+  },
+  "extraCityObjects": {
+    "+Zone": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+Zone"
+              ]
+            },
+            "module": {
+              "enum": [
+                "Buildings"
+              ]
+            },
+            "reliability": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "completenessSet": {
+              "type": "object",
+              "properties": {
+                "isExist": {
+                  "type": "boolean"
+                },
+                "completenessAbsence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "completenessExcess": {
+                  "type": "number",
+                  "minimum": 1
+                },
+                "isMesh": {
+                  "type": "boolean"
+                }
+              },
+              "patternProperties": {
+                "^lod[0-4]{1}\\.[0-3]{1}$": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "additionalProperties": false
+            },
+            "temporalReliability": {
+              "$ref": "definitions#/tr"
+            },
+            "positionalQuality": {
+              "type": "object",
+              "properties": {
+                "set1": {
+                  "$ref": "definitions#/pq-simple2d"
+                },
+                "set2": {
+                  "$ref": "definitions#/pq-simple3d"
+                }
+              },
+              "additionalProperties": false
+            },
+            "visualQuality": {
+              "type": "object",
+              "properties": {
+                "set1": {
+                  "$ref": "definitions#/vq-set1"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "toplevel": {
+            "type": "boolean"
+          },
+          "attributes": {
+            "properties": {
+              "buildingLDenMin": {
+                "type": "number"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "geometry",
+            "temporalReliability"
+          ]
+        }
+      ]
+    }
+  }
+}
