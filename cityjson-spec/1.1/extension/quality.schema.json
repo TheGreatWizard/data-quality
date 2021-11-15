@@ -1,8 +1,9 @@
 {
   "type": "CityJSON_Extension",
   "name": "Quality",
-  "uri": "https://raw.githubusercontent.com/TheGreatWizard/data-quality/main/cityjson-spec/1.0.1/extension/quality.schema.json",
+  "uri": "https://raw.githubusercontent.com/TheGreatWizard/data-quality/main/cityjson-spec/1.1/extension/quality.schema.json",
   "version": "0.1",
+  "versionCityJSON": "1.1",
   "description": "Application Domain Extension to data quality modeling",
   "definitions": {
     "distance-value": {
