@@ -1,13 +1,19 @@
 {
   "type": "CityJSON",
-  "version": "1.0",
+  "version": "1.1",
+  "extensions": {
+    "Quality": {
+      "url": "https://raw.githubusercontent.com/TheGreatWizard/data-quality/main/cityjson-spec/1.1/extension/quality.schema.json",
+      "version": "1.0"
+    }
+  },
   "CityObjects": {
     "UUID_bbf25190-b0fa-11eb-a8da-00155d01d30e": {
       "type": "Building",
       "geometry": [
         {
           "type": "Solid",
-          "lod": 2,
+          "lod": "2",
           "boundaries": [
             [
               [
@@ -151,18 +157,18 @@
           }
         }
       ],
-      "+quality-visualQuality": {
-        "set1": {
-          "textureType": 0
+      "+quality-reliability": [
+        {
+          "reliability": 0.99
+        },
+        {
+          "target": [
+            0,
+            0
+          ],
+          "reliability": 0.98
         }
-      },
-      "+quality-completeness": 0.99,
-      "+quality-reliability": 0.99,
-      "+quality-temporalReliability": {
-        "measureDate": "2017-10-22",
-        "measureTime": "10:33:38",
-        "transience": 3650
-      },
+      ],
       "+quality-positionalQuality": {
         "set1": {
           "CE90": {
@@ -184,7 +190,55 @@
             "SE90": 1.25,
             "LE90": 0.63
           }
-        ]
+        ],
+        "set3": {
+          "targetSurface": [
+            0,
+            0
+          ],
+          "position": [
+            0.5,
+            0,
+            0,
+            0.5,
+            0,
+            0.5
+          ],
+          "azimuth": {
+            "value": 90,
+            "uom": "dd"
+          },
+          "elevation": {
+            "value": 0,
+            "uom": "dd"
+          },
+          "texture_CE90": {
+            "value": 0.26,
+            "uom": "m"
+          }
+        },
+        "set4": {
+          "targetVertex": 2,
+          "positionAccuracy": [
+            0.5,
+            0,
+            0,
+            0.5,
+            0,
+            0.5
+          ]
+        }
+      },
+      "+quality-visualQuality": {
+        "set1": {
+          "textureType": "None"
+        }
+      },
+      "+quality-completeness": 0.99,
+      "+quality-temporalReliability": {
+        "measureDate": "2017-10-22",
+        "measureTime": "10:33:38",
+        "transience": 3650
       }
     }
   },
@@ -251,11 +305,17 @@
     ]
   ],
   "metadata": {},
-  "extensions": {
-    "Quality": {
-      "url": "https://github.com/TheGreatWizard/data-quality/blob/main/cityjson-spec/1.0.1/extension/quality.schema.json",
-      "version": "1.0"
-    }
-  },
-  "appearance": {}
+  "appearance": {},
+  "transform": {
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "translate": [
+      0,
+      0,
+      0
+    ]
+  }
 }
