@@ -8,6 +8,54 @@
     }
   },
   "CityObjects": {
+    "UUID_bbf25190-b0fa-11eb-a8db-00155d01d30e": {
+      "type": "+Zone",
+      "geometry": {
+        "type": "MultiSurface",
+        "boundary": [
+          [
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ]
+        ]
+      },
+      "reliability": 0.96,
+      "completenessSet": {
+        "isExist": true,
+        "completenessAbsence": 0.98,
+        "completenessExcess": 1.01,
+        "isMesh": false,
+        "lod1.0": 0.99,
+        "lod2.0": 0.80,
+        "lod3.1": 0.01
+      },
+      "temporalReliability": {
+        "measureDate": "2016-10-22",
+        "measureTime": "15:23:10+00:00",
+        "transience": 36500
+      },
+      "positionalQuality": {
+        "set1": {
+          "CE90": {
+            "value": 20,
+            "uom": "m"
+          },
+          "LE90": {
+            "value": 1,
+            "uom": "m"
+          }
+        }
+      },
+      "visualQuality": {
+        "set1": {
+          "textureType": "None"
+        }
+      }
+    },
     "UUID_bbf25190-b0fa-11eb-a8da-00155d01d30e": {
       "type": "Building",
       "geometry": [
@@ -157,88 +205,90 @@
           }
         }
       ],
-      "+quality-reliability": [
-        {
-          "reliability": 0.99
-        },
-        {
-          "target": [
-            0,
-            0
-          ],
-          "reliability": 0.98
-        }
-      ],
-      "+quality-positionalQuality": {
-        "set1": {
-          "CE90": {
-            "value": 10,
-            "uom": "m"
+      "attributes": {
+        "+quality-reliability": [
+          {
+            "reliability": 0.99
           },
-          "LE90": 0.607
-        },
-        "set2": [
           {
             "target": [
               0,
-              2
+              0
             ],
-            "SE90": 0.6944098475113633,
-            "LE90": 0.3484112109312497
-          },
-          {
-            "SE90": 1.25,
-            "LE90": 0.63
+            "reliability": 0.98
           }
         ],
-        "set3": {
-          "targetSurface": [
-            0,
-            0
-          ],
-          "position": [
-            0.5,
-            0,
-            0,
-            0.5,
-            0,
-            0.5
-          ],
-          "azimuth": {
-            "value": 90,
-            "uom": "dd"
+        "+quality-positionalQuality": {
+          "set1": {
+            "CE90": {
+              "value": 10,
+              "uom": "m"
+            },
+            "LE90": 0.607
           },
-          "elevation": {
-            "value": 0,
-            "uom": "dd"
+          "set2": [
+            {
+              "target": [
+                0,
+                2
+              ],
+              "SE90": 0.6944098475113633,
+              "LE90": 0.3484112109312497
+            },
+            {
+              "SE90": 1.25,
+              "LE90": 0.63
+            }
+          ],
+          "set3": {
+            "targetSurface": [
+              0,
+              0
+            ],
+            "position": [
+              0.5,
+              0,
+              0,
+              0.5,
+              0,
+              0.5
+            ],
+            "azimuth": {
+              "value": 90,
+              "uom": "dd"
+            },
+            "elevation": {
+              "value": 0,
+              "uom": "dd"
+            },
+            "texture_CE90": {
+              "value": 0.26,
+              "uom": "m"
+            }
           },
-          "texture_CE90": {
-            "value": 0.26,
-            "uom": "m"
+          "set4": {
+            "targetVertex": 2,
+            "positionAccuracy": [
+              0.5,
+              0,
+              0,
+              0.5,
+              0,
+              0.5
+            ]
           }
         },
-        "set4": {
-          "targetVertex": 2,
-          "positionAccuracy": [
-            0.5,
-            0,
-            0,
-            0.5,
-            0,
-            0.5
-          ]
+        "+quality-visualQuality": {
+          "set1": {
+            "textureType": "None"
+          }
+        },
+        "+quality-completeness": 0.88,
+        "+quality-temporalReliability": {
+          "measureDate": "2017-10-22",
+          "measureTime": "10:33:38+00:00",
+          "transience": 3650
         }
-      },
-      "+quality-visualQuality": {
-        "set1": {
-          "textureType": "None"
-        }
-      },
-      "+quality-completeness": 0.99,
-      "+quality-temporalReliability": {
-        "measureDate": "2017-10-22",
-        "measureTime": "10:33:38",
-        "transience": 3650
       }
     }
   },
