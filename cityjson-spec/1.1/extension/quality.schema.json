@@ -168,7 +168,7 @@
           "type": "object",
           "properties": {
             "value": {
-              "#ref": "definitions/#uom-pq-variance-matrix"
+              "$ref": "definitions/#uom-pq-variance-matrix"
             },
             "uom": {
               "enum": [
@@ -184,7 +184,7 @@
           ]
         },
         {
-          "#ref": "definitions/#pq-variance-matrix"
+          "$ref": "definitions/#pq-variance-matrix"
         }
       ]
     },
